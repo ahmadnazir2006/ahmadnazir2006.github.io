@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ahmad Nazir — ML Engineer</title>
+<title>Ahmad Nazir — Full Stack Developer</title>
+<meta name="description" content="Full stack developer building FastAPI backends, PostgreSQL systems, AI automation workflows, and production deployments.">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <style>
   :root {
@@ -19,71 +20,22 @@
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Segoe UI', system-ui, sans-serif;
-    overflow-x: hidden;
-    line-height: 1.6;
-  }
-  #canvas-bg {
-    position: fixed; top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 0; pointer-events: none;
-  }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; overflow-x: hidden; line-height: 1.6; }
+  #canvas-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
   .content { position: relative; z-index: 1; }
-  nav {
-    position: fixed; top: 0; width: 100%; z-index: 100;
-    padding: 1rem 3rem;
-    display: flex; justify-content: space-between; align-items: center;
-    background: rgba(6,6,18,0.7);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--glass-border);
-  }
-  .nav-logo {
-    font-size: 1.2rem; font-weight: 700;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  }
+  nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1rem 3rem; display: flex; justify-content: space-between; align-items: center; background: rgba(6,6,18,0.7); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border); }
+  .nav-logo { font-size: 1.2rem; font-weight: 700; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
   .nav-links { display: flex; gap: 2rem; list-style: none; }
   .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
   .nav-links a:hover { color: var(--accent); }
-  #hero {
-    min-height: 100vh;
-    display: flex; align-items: center; justify-content: center;
-    text-align: center; padding: 6rem 2rem 4rem;
-  }
+  #hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 6rem 2rem 4rem; max-width: none; }
   .hero-inner { max-width: 800px; }
-  .hero-badge {
-    display: inline-block; margin-bottom: 1.5rem;
-    padding: 0.4rem 1.2rem;
-    border: 1px solid var(--accent);
-    border-radius: 100px; font-size: 0.8rem;
-    color: var(--accent); letter-spacing: 0.1em;
-    animation: fadeInDown 0.8s ease both;
-  }
-  .hero-name {
-    font-size: clamp(3rem, 8vw, 5.5rem);
-    font-weight: 800; letter-spacing: -0.02em;
-    line-height: 1.1; margin-bottom: 1rem;
-    animation: fadeInUp 0.9s ease both 0.2s;
-  }
-  .hero-name .grad {
-    background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-size: 200% 200%;
-    animation: fadeInUp 0.9s ease both 0.2s, gradShift 4s ease infinite 1s;
-  }
+  .hero-badge { display: inline-block; margin-bottom: 1.5rem; padding: 0.4rem 1.2rem; border: 1px solid var(--accent); border-radius: 100px; font-size: 0.8rem; color: var(--accent); letter-spacing: 0.1em; animation: fadeInDown 0.8s ease both; }
+  .hero-name { font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 1rem; animation: fadeInUp 0.9s ease both 0.2s; }
+  .hero-name .grad { background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-size: 200% 200%; animation: fadeInUp 0.9s ease both 0.2s, gradShift 4s ease infinite 1s; font-size: 0.62em; display: inline-block; }
   @keyframes gradShift { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
-  .hero-sub {
-    font-size: 1.15rem; color: var(--muted); margin-bottom: 2.5rem;
-    max-width: 550px; margin-left: auto; margin-right: auto;
-    animation: fadeInUp 0.9s ease both 0.4s;
-  }
-  .hero-ctas {
-    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
-    animation: fadeInUp 0.9s ease both 0.6s;
-  }
+  .hero-sub { font-size: 1.15rem; color: var(--muted); margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto; animation: fadeInUp 0.9s ease both 0.4s; }
+  .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; animation: fadeInUp 0.9s ease both 0.6s; }
   .btn { padding: 0.8rem 2rem; border-radius: 8px; font-size: 0.9rem; font-weight: 600; cursor: pointer; text-decoration: none; transition: all 0.25s; }
   .btn-primary { background: linear-gradient(135deg, var(--accent), #5a4de8); color: #fff; border: none; box-shadow: 0 4px 20px rgba(124,109,250,0.35); }
   .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(124,109,250,0.5); }
@@ -96,11 +48,7 @@
   .section-title { font-size: clamp(1.8rem,4vw,2.5rem); font-weight: 700; margin-bottom: 3rem; line-height: 1.2; }
   .section-title span { color: var(--accent2); }
   .skills-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 1.5rem; }
-  .skill-card {
-    background: var(--glass); border: 1px solid var(--glass-border);
-    border-radius: 16px; padding: 1.5rem; transition: all 0.3s;
-    position: relative; overflow: hidden;
-  }
+  .skill-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px; padding: 1.5rem; transition: all 0.3s; position: relative; overflow: hidden; }
   .skill-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--accent),var(--accent2)); transform:scaleX(0); transition:transform 0.3s; transform-origin:left; }
   .skill-card:hover { transform:translateY(-4px); border-color:rgba(124,109,250,0.3); }
   .skill-card:hover::before { transform:scaleX(1); }
@@ -109,36 +57,38 @@
   .skill-name { font-weight:600; margin-bottom:0.4rem; }
   .skill-desc { font-size:0.85rem; color:var(--muted); line-height:1.5; }
   .projects-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:1.5rem; }
-  .project-card {
-    background:var(--glass); border:1px solid var(--glass-border);
-    border-radius:20px; padding:2rem; transition:all 0.3s;
-    display:flex; flex-direction:column; position:relative; overflow:hidden;
-  }
+  .project-card { background:var(--glass); border:1px solid var(--glass-border); border-radius:20px; padding:2rem; transition:all 0.3s; display:flex; flex-direction:column; position:relative; overflow:hidden; }
+  .project-card.featured { grid-column: 1 / -1; border-color: rgba(124,109,250,0.35); background: rgba(124,109,250,0.06); }
   .project-card:hover { transform:translateY(-6px); border-color:rgba(124,109,250,0.4); background:rgba(255,255,255,0.06); }
   .project-card .glow { position:absolute; width:200px; height:200px; border-radius:50%; filter:blur(60px); opacity:0; transition:opacity 0.4s; pointer-events:none; }
   .project-card:hover .glow { opacity:0.15; }
-  .project-tag { display:inline-block; padding:0.25rem 0.7rem; border-radius:100px; font-size:0.7rem; font-weight:600; letter-spacing:0.08em; margin-bottom:1rem; }
+  .project-tag { display:inline-block; align-self:flex-start; padding:0.25rem 0.7rem; border-radius:100px; font-size:0.7rem; font-weight:600; letter-spacing:0.08em; margin-bottom:1rem; }
   .tag-ai { background:rgba(124,109,250,0.2); color:var(--accent); border:1px solid rgba(124,109,250,0.3); }
   .tag-ml { background:rgba(0,212,170,0.15); color:var(--accent2); border:1px solid rgba(0,212,170,0.3); }
   .tag-nlp { background:rgba(245,93,139,0.15); color:var(--accent3); border:1px solid rgba(245,93,139,0.3); }
   .tag-dl { background:rgba(255,180,50,0.15); color:#ffb432; border:1px solid rgba(255,180,50,0.3); }
   .project-title { font-size:1.2rem; font-weight:700; margin-bottom:0.75rem; }
   .project-desc { font-size:0.875rem; color:var(--muted); line-height:1.6; margin-bottom:1.25rem; flex:1; }
+  .flow { display:flex; flex-wrap:wrap; align-items:center; gap:0.4rem; margin-bottom:1.25rem; font-size:0.75rem; font-family:monospace; }
+  .flow span { padding:0.25rem 0.6rem; border-radius:6px; background:rgba(124,109,250,0.12); border:1px solid rgba(124,109,250,0.3); color:var(--text); }
+  .flow i { color:var(--muted); font-style:normal; }
   .project-tech { display:flex; flex-wrap:wrap; gap:0.4rem; margin-bottom:1.25rem; }
   .tech-pill { padding:0.2rem 0.6rem; border-radius:6px; background:rgba(255,255,255,0.06); border:1px solid var(--glass-border); font-size:0.72rem; color:var(--muted); font-family:monospace; }
-  .project-links { display:flex; gap:0.75rem; }
+  .project-links { display:flex; gap:0.75rem; flex-wrap:wrap; }
   .proj-link { display:flex; align-items:center; gap:0.4rem; padding:0.5rem 1rem; border-radius:8px; font-size:0.8rem; font-weight:600; text-decoration:none; border:1px solid var(--glass-border); color:var(--text); transition:all 0.2s; }
   .proj-link:hover { border-color:var(--accent); color:var(--accent); background:rgba(124,109,250,0.1); }
   .proj-link.live { background:rgba(124,109,250,0.15); border-color:var(--accent); color:var(--accent); }
   .timeline { position:relative; padding-left:2rem; }
   .timeline::before { content:''; position:absolute; left:0; top:0; bottom:0; width:1px; background:linear-gradient(to bottom,var(--accent),transparent); }
-  .timeline-item { position:relative; margin-bottom:2.5rem; padding:1.5rem; background:var(--glass); border:1px solid var(--glass-border); border-radius:16px; transition:all 0.3s; }
+  .timeline-item { position:relative; margin-bottom:2rem; padding:1.5rem; background:var(--glass); border:1px solid var(--glass-border); border-radius:16px; transition:all 0.3s; }
   .timeline-item:hover { border-color:rgba(124,109,250,0.3); transform:translateX(4px); }
   .timeline-dot { position:absolute; left:-2.5rem; width:10px; height:10px; border-radius:50%; background:var(--accent); top:1.75rem; box-shadow:0 0 12px var(--accent); }
   .tl-role { font-size:1rem; font-weight:700; margin-bottom:0.25rem; }
   .tl-org { color:var(--accent); font-size:0.875rem; font-weight:600; margin-bottom:0.25rem; }
   .tl-period { font-size:0.8rem; color:var(--muted); margin-bottom:0.75rem; }
   .tl-desc { font-size:0.875rem; color:var(--muted); line-height:1.6; }
+  .tl-desc ul { padding-left:1.1rem; }
+  .tl-desc li { margin-bottom:0.4rem; }
   .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; }
   .about-text p { color:var(--muted); line-height:1.8; margin-bottom:1rem; font-size:0.95rem; }
   .about-stats { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
@@ -156,7 +106,9 @@
   @keyframes fadeInUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
   .reveal { opacity:0; transform:translateY(40px); transition:opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity:1; transform:translateY(0); }
-  @media(max-width:768px){nav{padding:1rem 1.5rem} .nav-links{display:none} .about-grid{grid-template-columns:1fr}}
+  a:focus-visible { outline:2px solid var(--accent2); outline-offset:3px; }
+  @media(prefers-reduced-motion:reduce){ *{animation:none!important;transition:none!important} .reveal{opacity:1;transform:none} }
+  @media(max-width:768px){nav{padding:1rem 1.5rem} .nav-links{display:none} .about-grid{grid-template-columns:1fr} .projects-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -175,9 +127,9 @@
 
 <section id="hero">
   <div class="hero-inner">
-    <div class="hero-badge">✦ Open to Opportunities</div>
-    <h1 class="hero-name">Ahmad Nazir<br><span class="grad">ML Engineer</span></h1>
-    <p class="hero-sub">Building production-grade AI systems — from LSTM forecasting pipelines to LLM-powered applications.</p>
+    <div class="hero-badge">✦ Open to Full Stack Roles</div>
+    <h1 class="hero-name">Ahmad Nazir<br><span class="grad">Full Stack Developer</span></h1>
+    <p class="hero-sub">I build and ship complete systems — FastAPI backends, PostgreSQL databases, AI automation workflows, and live production deployments.</p>
     <div class="hero-ctas">
       <a href="#projects" class="btn btn-primary">View Projects</a>
       <a href="mailto:ahmadnazir9101@gmail.com" class="btn btn-outline">Get in Touch</a>
@@ -191,15 +143,15 @@
   <h2 class="section-title">CS Student at <span>FAST-NUCES</span></h2>
   <div class="about-grid reveal">
     <div class="about-text">
-      <p>I'm an ML Engineer and Computer Science student at FAST-NUCES, Lahore — specializing in Applied AI & MLOps. I design and ship production-grade AI systems end-to-end.</p>
-      <p>From data engineering and model training to REST API deployment and MLOps infrastructure — I'm proficient across the full stack. I care about measurable outcomes, not just working demos.</p>
-      <p>Currently seeking an internship where strong technical execution and real-world AI impact matter.</p>
+      <p>I'm a full stack developer and Computer Science student at FAST-NUCES, Lahore. I build end-to-end systems: REST APIs, relational databases, webhook and workflow integrations, and web front-ends.</p>
+      <p>Most recently I designed, built, and deployed an AI appointment-booking platform for a live dental clinic — from backend logic and database design to Docker, Caddy, and Cloudflare on a VPS.</p>
+      <p>I also bring an AI/ML background: LLM integration, prompt engineering, and deep learning pipelines. I'm looking for a full stack role where I can ship real software.</p>
     </div>
     <div class="about-stats">
-      <div class="stat-box"><div class="stat-num">4+</div><div class="stat-label">Production Projects</div></div>
-      <div class="stat-box"><div class="stat-num">90%+</div><div class="stat-label">Model Accuracy</div></div>
-      <div class="stat-box"><div class="stat-num">&lt;1s</div><div class="stat-label">Inference Speed</div></div>
-      <div class="stat-box"><div class="stat-num">3</div><div class="stat-label">Live Deployments</div></div>
+      <div class="stat-box"><div class="stat-num">5</div><div class="stat-label">Projects Shipped</div></div>
+      <div class="stat-box"><div class="stat-num">1</div><div class="stat-label">Live Client System</div></div>
+      <div class="stat-box"><div class="stat-num">1.6M+</div><div class="stat-label">Downloads Across Apps I QA'd</div></div>
+      <div class="stat-box"><div class="stat-num">&lt;1s</div><div class="stat-label">Real-Time Inference</div></div>
     </div>
   </div>
 </section>
@@ -208,12 +160,12 @@
   <p class="section-label">Technical Stack</p>
   <h2 class="section-title">What I <span>Work With</span></h2>
   <div class="skills-grid">
-    <div class="skill-card reveal"><div class="skill-icon">🧠</div><div class="skill-cat">Machine Learning</div><div class="skill-name">Classical ML</div><div class="skill-desc">Scikit-learn, XGBoost, SMOTE — classification, regression, and forecasting pipelines</div></div>
-    <div class="skill-card reveal"><div class="skill-icon">⚡</div><div class="skill-cat">Deep Learning</div><div class="skill-name">Neural Networks</div><div class="skill-desc">TensorFlow & Keras — LSTM, CNN-LSTM, GRU, RNN for time-series and pattern recognition</div></div>
-    <div class="skill-card reveal"><div class="skill-icon">🤖</div><div class="skill-cat">AI / LLMs</div><div class="skill-name">LLM Engineering</div><div class="skill-desc">Prompt engineering, few-shot & chain-of-thought, Gemini API, full LLM application integration</div></div>
-    <div class="skill-card reveal"><div class="skill-icon">📊</div><div class="skill-cat">Data Engineering</div><div class="skill-name">Data Analysis</div><div class="skill-desc">Pandas, NumPy, Matplotlib — feature engineering, data wrangling, exploratory analysis</div></div>
-    <div class="skill-card reveal"><div class="skill-icon">🔧</div><div class="skill-cat">MLOps & DevOps</div><div class="skill-name">Production ML</div><div class="skill-desc">DVC, Weights & Biases, Docker, Git, Linux — reproducible end-to-end pipelines</div></div>
-    <div class="skill-card reveal"><div class="skill-icon">🚀</div><div class="skill-cat">APIs & Backend</div><div class="skill-name">Deployment</div><div class="skill-desc">FastAPI (async REST), Streamlit, full-stack AI app deployment — Python, SQL, C++</div></div>
+    <div class="skill-card reveal"><div class="skill-icon">🛠️</div><div class="skill-cat">Backend & APIs</div><div class="skill-name">Server-Side Development</div><div class="skill-desc">Python (advanced), FastAPI async REST APIs, Flask, SQL, PostgreSQL, SQLAlchemy, webhooks, authentication</div></div>
+    <div class="skill-card reveal"><div class="skill-icon">🔗</div><div class="skill-cat">Automation & Integration</div><div class="skill-name">Workflow Automation</div><div class="skill-desc">n8n workflows, WhatsApp API integration, third-party API and webhook orchestration</div></div>
+    <div class="skill-card reveal"><div class="skill-icon">🚀</div><div class="skill-cat">Deployment & DevOps</div><div class="skill-name">Production Hosting</div><div class="skill-desc">Docker, VPS deployment, Caddy reverse proxy, Cloudflare, SSL/TLS, Git, Linux, Vercel</div></div>
+    <div class="skill-card reveal"><div class="skill-icon">🖥️</div><div class="skill-cat">Frontend & UI</div><div class="skill-name">Web Interfaces</div><div class="skill-desc">HTML, Bootstrap, Streamlit, and Vercel-deployed front-ends connected to live backends</div></div>
+    <div class="skill-card reveal"><div class="skill-icon">🤖</div><div class="skill-cat">AI / LLMs</div><div class="skill-name">AI Integration</div><div class="skill-desc">Gemini API, AI agents, prompt engineering, few-shot and chain-of-thought prompting, context injection</div></div>
+    <div class="skill-card reveal"><div class="skill-icon">🧠</div><div class="skill-cat">ML & Data</div><div class="skill-name">Machine Learning</div><div class="skill-desc">Scikit-learn, XGBoost, TensorFlow/Keras (LSTM, CNN-LSTM, GRU), Pandas, NumPy, DVC, Weights & Biases. Also C++ and Assembly.</div></div>
   </div>
 </section>
 
@@ -221,37 +173,46 @@
   <p class="section-label">What I've Built</p>
   <h2 class="section-title">Featured <span>Projects</span></h2>
   <div class="projects-grid">
-    <div class="project-card reveal">
+    <div class="project-card featured reveal">
       <div class="glow" style="background:#7c6dfa;top:-50px;right:-50px;"></div>
-      <span class="project-tag tag-dl">⚡ Deep Learning</span>
-      <div class="project-title">Industrial Power Optimizer</div>
-      <div class="project-desc">Benchmarked LSTM, CNN-LSTM, and GRU architectures for industrial power-consumption forecasting. Real-time inference pipeline returning predictions in under 1 second from live sensor data. Full MLOps with DVC + W&B for reproducibility.</div>
-      <div class="project-tech"><span class="tech-pill">Python</span><span class="tech-pill">TensorFlow</span><span class="tech-pill">LSTM</span><span class="tech-pill">CNN-LSTM</span><span class="tech-pill">GRU</span><span class="tech-pill">DVC</span><span class="tech-pill">W&B</span></div>
-      <div class="project-links"><a href="https://industrial-power-optimizer-238.streamlit.app/" target="_blank" class="proj-link live">↗ Live Demo</a></div>
+      <span class="project-tag tag-ai">✦ Full Stack · AI Automation · Live Client</span>
+      <div class="project-title">Dental Clinic Automation Platform</div>
+      <div class="project-desc">End-to-end AI booking system built for a live dental clinic. Patients message on WhatsApp; an AI agent handles the conversation and books appointments. I built the backend, database, integrations, and front-end, then deployed everything on a VPS, handling testing and debugging across the whole pipeline.</div>
+      <div class="flow"><span>WhatsApp</span><i>→</i><span>Webhook</span><i>→</i><span>n8n</span><i>→</i><span>AI Agent</span><i>→</i><span>PostgreSQL</span><i>→</i><span>Booking</span><i>→</i><span>Reply</span></div>
+      <div class="project-tech"><span class="tech-pill">Python</span><span class="tech-pill">FastAPI</span><span class="tech-pill">PostgreSQL</span><span class="tech-pill">n8n</span><span class="tech-pill">WhatsApp API</span><span class="tech-pill">Docker</span><span class="tech-pill">Caddy</span><span class="tech-pill">Cloudflare</span><span class="tech-pill">Vercel</span></div>
+      <div class="project-links"><a href="https://dental-clinic-frontend-ebon.vercel.app/" target="_blank" rel="noopener" class="proj-link live">↗ Live Frontend</a></div>
     </div>
     <div class="project-card reveal">
       <div class="glow" style="background:#f55d8b;top:-50px;right:-50px;"></div>
       <span class="project-tag tag-ai">✦ LLM App</span>
       <div class="project-title">Nazar AI</div>
-      <div class="project-desc">Production AI assistant on Google Gemini with a decoupled FastAPI backend and Streamlit frontend for independent scaling. Applied few-shot examples, chain-of-thought prompting, and context injection for measurably improved task-specific accuracy.</div>
+      <div class="project-desc">Full-stack AI application on Google Gemini with a decoupled FastAPI backend and Streamlit front-end, so each can scale independently. Few-shot examples, chain-of-thought prompting, and context injection improve task-specific accuracy.</div>
       <div class="project-tech"><span class="tech-pill">Python</span><span class="tech-pill">Gemini API</span><span class="tech-pill">FastAPI</span><span class="tech-pill">Streamlit</span><span class="tech-pill">Prompt Eng.</span></div>
-      <div class="project-links"><a href="https://nazar-app.vercel.app/" target="_blank" class="proj-link live">↗ Live Demo</a></div>
+      <div class="project-links"><a href="https://nazar-app.vercel.app/" target="_blank" rel="noopener" class="proj-link live">↗ Live Demo</a><a href="https://github.com/ahmadnazir2006/NAZAR-APP" target="_blank" rel="noopener" class="proj-link">GitHub</a></div>
     </div>
     <div class="project-card reveal">
       <div class="glow" style="background:#00d4aa;top:-50px;right:-50px;"></div>
       <span class="project-tag tag-nlp">🔮 Dev Tool</span>
       <div class="project-title">Velox — LLM Dev-Automation</div>
-      <div class="project-desc">LLM-powered tool that auto-generates scripts for repetitive development workflows, reducing manual effort through intelligent code synthesis. Modular dynamic prompt templates that adapt across project types without reconfiguration.</div>
+      <div class="project-desc">LLM-powered tool that generates scripts for repetitive development workflows, cutting manual effort. Modular prompt templates adapt across project types without reconfiguration.</div>
       <div class="project-tech"><span class="tech-pill">Python</span><span class="tech-pill">LLM Integration</span><span class="tech-pill">Prompt Eng.</span></div>
-      <div class="project-links"><a href="https://veloxscript.vercel.app/" target="_blank" class="proj-link live">↗ Live Demo</a></div>
+      <div class="project-links"><a href="https://veloxscript.vercel.app/" target="_blank" rel="noopener" class="proj-link live">↗ Live Demo</a></div>
     </div>
     <div class="project-card reveal">
       <div class="glow" style="background:#ffb432;top:-50px;right:-50px;"></div>
+      <span class="project-tag tag-dl">⚡ Deep Learning · MLOps</span>
+      <div class="project-title">Industrial Power Optimizer</div>
+      <div class="project-desc">Benchmarked LSTM, CNN-LSTM, and GRU models for industrial power-consumption forecasting. Real-time inference pipeline returns predictions in under 1 second, with DVC and W&B for reproducibility.</div>
+      <div class="project-tech"><span class="tech-pill">Python</span><span class="tech-pill">TensorFlow</span><span class="tech-pill">LSTM</span><span class="tech-pill">DVC</span><span class="tech-pill">W&B</span><span class="tech-pill">Streamlit</span></div>
+      <div class="project-links"><a href="https://industrial-power-optimizer-238.streamlit.app/" target="_blank" rel="noopener" class="proj-link live">↗ Live Demo</a><a href="https://github.com/ahmadnazir2006/Industrial-Power-Optimizer" target="_blank" rel="noopener" class="proj-link">GitHub</a></div>
+    </div>
+    <div class="project-card reveal">
+      <div class="glow" style="background:#00d4aa;top:-50px;right:-50px;"></div>
       <span class="project-tag tag-ml">📈 ML</span>
       <div class="project-title">Customer Churn Prediction</div>
-      <div class="project-desc">Classification model achieving 90%+ accuracy through behavioural and transactional feature engineering from raw customer data. Resolved class imbalance with SMOTE; evaluated across Precision, Recall, F1, and ROC-AUC for production-grade reliability.</div>
+      <div class="project-desc">Classification pipeline reaching 90%+ accuracy through behavioural and transactional feature engineering. Class imbalance handled with SMOTE; evaluated on Precision, Recall, F1, and ROC-AUC.</div>
       <div class="project-tech"><span class="tech-pill">Python</span><span class="tech-pill">Scikit-learn</span><span class="tech-pill">XGBoost</span><span class="tech-pill">Pandas</span><span class="tech-pill">SMOTE</span></div>
-      <div class="project-links"><a href="https://github.com/ahmadnazir2006" target="_blank" class="proj-link">↗ GitHub</a></div>
+      <div class="project-links"><a href="https://github.com/ahmadnazir2006/End-to-End-Customer-Churn-Prediction-System" target="_blank" rel="noopener" class="proj-link">GitHub</a></div>
     </div>
   </div>
 </section>
@@ -262,24 +223,44 @@
   <div class="timeline reveal">
     <div class="timeline-item">
       <div class="timeline-dot"></div>
+      <div class="tl-role">Full Stack / AI Automation Developer</div>
+      <div class="tl-org">Independent Client Project — Dental Clinic</div>
+      <div class="tl-period">June 2026</div>
+      <div class="tl-desc"><ul>
+        <li>Designed and built an end-to-end system: WhatsApp → webhook → n8n automation → AI agent → PostgreSQL → appointment booking → response, including integration logic, testing, and debugging.</li>
+        <li>Owned deployment for a live client: Docker containers, Caddy reverse proxy, Cloudflare, SSL/TLS, and ongoing maintenance on a VPS.</li>
+        <li>Used PostgreSQL to persist conversation state, patient records, and booking data.</li>
+      </ul></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="tl-role">Product, QA & Content Contributor</div>
+      <div class="tl-org">Mobile Apps — Remote, Germany-based Dev Team</div>
+      <div class="tl-period">Feb 2025 – Oct 2025</div>
+      <div class="tl-desc"><ul>
+        <li>Tested functionality and user flows across a portfolio of mobile apps (1.6M+ combined downloads), reporting bugs to support release quality.</li>
+        <li>Reviewed UX and worked with a distributed team inside a live software development lifecycle.</li>
+      </ul></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
       <div class="tl-role">Partnerships Deputy</div>
       <div class="tl-org">SOFTEC, FAST-NUCES</div>
       <div class="tl-period">Jan 2025 – Present</div>
-      <div class="tl-desc">Lead corporate outreach and end-to-end sponsor negotiations for one of Pakistan's largest student-run tech events — from first contact through agreement signing to delivery.</div>
+      <div class="tl-desc">Lead corporate outreach and end-to-end sponsor negotiations for one of Pakistan's largest student-run tech events, from first contact through agreement signing to delivery.</div>
     </div>
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <div class="tl-role">Marketing Officer</div>
       <div class="tl-org">SOFTEC, FAST-NUCES</div>
       <div class="tl-period">Jan 2024 – Dec 2024</div>
-      <div class="tl-desc">Planned and executed digital and on-campus campaigns that increased event visibility and participant engagement across channels.</div>
+      <div class="tl-desc">Planned and ran digital and on-campus campaigns that increased event visibility and participant engagement.</div>
     </div>
     <div class="timeline-item">
       <div class="timeline-dot" style="background:var(--accent2);box-shadow:0 0 12px var(--accent2);"></div>
       <div class="tl-role">BS Computer Science — Applied AI & MLOps</div>
-      <div class="tl-org">FAST-NUCES, Lahore</div>
-      <div class="tl-period">Aug 2024 – Expected Jun 2028</div>
-      <div class="tl-desc">Relevant coursework: Machine Learning, Deep Learning, Database Systems, Data Structures & Algorithms, Operating Systems.</div>
+      <div class="tl-org" style="margin-bottom:0.75rem;">FAST-NUCES, Lahore</div>
+      <div class="tl-desc">Relevant coursework: Database Systems, Data Structures & Algorithms, Operating Systems, Machine Learning, Deep Learning.</div>
     </div>
   </div>
 </section>
@@ -287,18 +268,18 @@
 <section id="contact">
   <p class="section-label">Let's Connect</p>
   <h2 class="section-title">Get In <span>Touch</span></h2>
-  <p style="color:var(--muted);max-width:500px;margin:0 auto 1rem;">I'm actively seeking internship opportunities in ML/AI. Open to collaborations, projects, and conversations.</p>
+  <p style="color:var(--muted);max-width:520px;margin:0 auto 1rem;">I'm looking for a full stack development role or internship. Open to freelance projects, collaborations, and conversations.</p>
   <div class="contact-links reveal">
     <a href="mailto:ahmadnazir9101@gmail.com" class="contact-link">
       <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>Email
     </a>
-    <a href="https://www.linkedin.com/in/ahmad-nazir-75752225b/" target="_blank" class="contact-link">
+    <a href="https://www.linkedin.com/in/ahmad-nazir-75752225b/" target="_blank" rel="noopener" class="contact-link">
       <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zm2-6a2 2 0 100 4 2 2 0 000-4z"/></svg>LinkedIn
     </a>
-    <a href="https://github.com/ahmadnazir2006" target="_blank" class="contact-link">
+    <a href="https://github.com/ahmadnazir2006" target="_blank" rel="noopener" class="contact-link">
       <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>GitHub
     </a>
-    <a href="https://twitter.com/chahmad____" target="_blank" class="contact-link">
+    <a href="https://twitter.com/chahmad____" target="_blank" rel="noopener" class="contact-link">
       <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@chahmad____
     </a>
     <a href="tel:03004924840" class="contact-link">
@@ -307,7 +288,7 @@
   </div>
 </section>
 
-<footer><p>Ahmad Nazir © 2025 · ML Engineer · Lahore, Pakistan</p></footer>
+<footer><p>Ahmad Nazir © 2026 · Full Stack Developer · Lahore, Pakistan</p></footer>
 </div>
 
 <script>
